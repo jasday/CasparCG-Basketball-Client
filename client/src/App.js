@@ -1,14 +1,18 @@
+//Context
 
-import './App.css';
+//Components
+import Header from "./Components/Header";
+import MainGrid from "./Components/MainGrid";
+import Footer from "./Components/Footer";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p><code>Hello World.</code></p>
-      </header>
-    </div>
+    <>
+      <Header />
+      <MainGrid />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;

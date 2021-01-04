@@ -1,23 +1,44 @@
-const { app, BrowserWindow } = require('electron');
-const isDev = require('electron-is-dev');
-const path = require('path');
-let mainWindow
+const { app, BrowserWindow } = require("electron");
+const isDev = require("electron-is-dev");
+const path = require("path");
 
-function createWindow(){
-    mainWindow = new BrowserWindow({
-        width:800,
-        height:600,
-        show: false
-    });
+const { fork } = require("child_process");
+const ps = fork(`${__dirname}/server.js`);
 
-    const startURL = isDev ? 'http:localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
+let mainWindow;
 
-    mainWindow.loadURL(startURL);
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 1600,
+    height: 900,
+    show: false,
+    backgroundColor: "#313335",
+    autoHideMenuBar: true,
+  });
 
-    mainWindow.once('ready-to-show', () => mainWindow.show());
-    mainWindow.on('closed', () => {
-        mainWindow = null;
-    })
+  const startURL = isDev
+    ? "http://localhost:3000"
+    : `file://${path.join(__dirname, "../build/index.html")}`;
+
+  mainWindow.loadURL(startURL);
+  mainWindow.focus();
+
+  mainWindow.once("ready-to-show", () => mainWindow.show());
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+  });
 }
 
-app.on('ready', createWindow);
+app.on("ready", createWindow);
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
+});

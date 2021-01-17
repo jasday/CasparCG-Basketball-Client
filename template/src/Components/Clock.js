@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { TimerContext } from "./Context/TimerContext";
+import socket from "./SocketConnection";
 
 import "../App.scss";
 
 const Clock = () => {
-  const { minutes, seconds } = useContext(TimerContext);
+  const { minutes, seconds, sync, setSync } = useContext(TimerContext);
+
+  useEffect(() => {
+    if (sync) {
+      socket.emit("TIMER-SYNC-RES", { minutes: minutes, seconds: seconds });
+      setSync(false);
+    }
+  }, [sync]);
 
   return (
     <div className="Clock">
@@ -13,7 +21,6 @@ const Clock = () => {
         <h1 className="animateEndTimer">00:00</h1>
       ) : (
         <h1>
-          {" "}
           {minutes < 10 ? `0${minutes}` : minutes}:
           {seconds < 10 ? `0${seconds}` : seconds}
         </h1>

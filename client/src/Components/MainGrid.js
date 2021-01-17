@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "../Styles/component-styles.scss";
 
-import TeamList from "./TeamList";
+import TeamList from "./Teams/TeamList";
 import Control from "./Control";
 
 const teamDefaultState = [

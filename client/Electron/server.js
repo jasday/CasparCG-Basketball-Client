@@ -59,6 +59,14 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("TIMER-SET", data);
   });
 
+  socket.on("TIMER-SYNC-REQ", () => {
+    console.log("Request Received");
+    socket.broadcast.emit("TIMER-SYNC-REQ");
+  });
+  socket.on("TIMER-SYNC-RES", (data) => {
+    socket.broadcast.emit("TIMER-SYNC-RES", data);
+  });
+
   //Disconnection
   socket.on("disconnect", (reason) => {
     console.log(`SOCKET// Client disconnected: ${reason}`);

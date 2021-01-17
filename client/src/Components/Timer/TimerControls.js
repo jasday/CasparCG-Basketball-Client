@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-import "../Styles/component-styles.scss";
-import { ACTIONS } from "../Components/Control";
+import "../../Styles/component-styles.scss";
+import { ACTIONS } from "../Control";
+import socket from "../SocketConnection";
 
 const TimerControls = ({ state, dispatch }) => {
-  const [time, setTime] = useState();
+  //const [time, setTime] = useState();
   return (
     <div className="timerControls">
       <button
@@ -24,6 +25,7 @@ const TimerControls = ({ state, dispatch }) => {
       {!state.paused ? (
         <button
           onClick={() => {
+            socket.emit("TIMER-SYNC-REQ");
             dispatch({ type: ACTIONS.PAUSE_TIMER });
           }}
         >
@@ -32,6 +34,7 @@ const TimerControls = ({ state, dispatch }) => {
       ) : (
         <button
           onClick={() => {
+            socket.emit("TIMER-SYNC-REQ");
             dispatch({ type: ACTIONS.PLAY_TIMER });
           }}
         >

@@ -9,6 +9,7 @@ export const TimerProvider = ({ children }) => {
   const [minutes, setMinutes] = useState(initialMinute);
   const [seconds, setSeconds] = useState(initialSeconds);
   const [paused, setPaused] = useState(true);
+  const [sync, setSync] = useState(true);
 
   useEffect(() => {
     socket.on("TIMER-PAUSE", () => {
@@ -20,6 +21,12 @@ export const TimerProvider = ({ children }) => {
     socket.on("TIMER-SET", (data) => {
       setMinutes(data.minutes);
       setSeconds(data.seconds);
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on("TIMER-SYNC-REQ", () => {
+      setSync(true);
     });
   }, []);
 
@@ -48,6 +55,8 @@ export const TimerProvider = ({ children }) => {
     seconds,
     setSeconds,
     paused,
+    sync,
+    setSync,
   };
 
   return (

@@ -4,10 +4,10 @@ import "../App.scss";
 import { NameContext } from "./Context/NameContext";
 
 const Team = ({ type, styleType }) => {
-  const { homeName, visitorName } = useContext(NameContext);
+  const { homeShortName, visitorShortName } = useContext(NameContext);
   return (
     <div className={`Team ${styleType}`}>
-      {type === "home" ? homeName : visitorName}
+      {type === "home" ? homeShortName : visitorShortName}
     </div>
   );
 };

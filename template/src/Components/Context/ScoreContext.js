@@ -7,11 +7,12 @@ export const ScoreProvider = ({ children }) => {
   const [homeScore, setHomeScore] = useState(0);
   const [visitorScore, setVisitorScore] = useState(0);
   useEffect(() => {
-    socket.on("SET-HOME-SCORE", (data) => {
-      setHomeScore(homeScore + data);
-    });
-    socket.on("SET-VISITOR-SCORE", (data) => {
-      setVisitorScore(visitorScore + data);
+    socket.on("SCORE-UPDATE", (data) => {
+      if (data.team === "homeTeam") {
+        setHomeScore(data.score);
+      } else if (data.team === "visitorTeam") {
+        setVisitorScore(data.score);
+      }
     });
   });
 

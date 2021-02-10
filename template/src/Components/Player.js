@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import { CustomisationContext } from "./Context/CustomisationContext";
+import { usePalette } from "react-palette";
+import scorchers from "../img/Surrey_Scorchers.png";
 
 const Player = ({ name, number }) => {
   const customisation = useContext(CustomisationContext);
+  const { data, loading, error } = usePalette(scorchers);
 
   const styles = {
     height: "60px",
     paddingLeft: "5px",
     marginBottom: "20px",
+    backgroundColor: customisation.ScoreboardTeamColour
+      ? customisation.ScoreboardTeamColour
+      : data.vibrant,
   };
   const numberStyle = {
     overflow: "none",

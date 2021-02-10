@@ -13,7 +13,7 @@
   text-align: center;
   width: 1920px;
   height: 1080px;
-  background-color: #c4c3c3;
+  //background-color: #c4c3c3;
   position: relative;
 }
 
@@ -32,34 +32,33 @@
 }
 
 
-.Scoreboard{
+
+
+
+.Scoreboard {
   font-family: GoBold;
   color: white;
   position: absolute;
   bottom: 180px;
   left: 359px;
-  //background-image: linear-gradient(to right, #323764, #1f2141);
-  //background-color: #25274d;
   border-radius: 15px 50px 30px;
   width: 1200px;
   height: 725px;
   margin: 0px;
   padding: 0px;
   overflow: hidden;
-  //background-image:linear-gradient(to left bottom,rgba(255,255,255,0.2),rgba(255,255,255,0));
-  .header{
+
+  .header {
     height: 200px;
   }
-  .team{
-    //background-image:linear-gradient(to left top,rgba(255,255,255,0.2),rgba(255,255,255,0));
+
+  .team {
     height: 475px;
-    // border-radius: 0px 0px 15px 0px;
   }
+
   ul {
     list-style-type: none;
-
   }
-
 
 }
 

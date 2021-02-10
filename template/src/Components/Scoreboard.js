@@ -15,42 +15,39 @@ const Scoreboard = ({ showScoreboard }) => {
   const players = useContext(PlayerContext);
   const customisation = useContext(CustomisationContext);
 
-  const { data, loading, error } = usePalette(scorchers);
-
   return (
-    <animated.div
-      className="container Scoreboard"
-      style={{
-        backgroundImage: `linear-gradient(to right, ${customisation.ScoreboardGradientPrimary}, ${customisation.ScoreboardGradientSecondary})`,
-      }}
-    >
-      <div className="row header">
-        <div className="col-8">
-          <img
-            src={scorchers}
-            className="float-left"
-            style={{ transform: "scale(0.9)", paddingTop: "15px" }}
-          />
+    <animated.div className="container Scoreboard">
+      <div
+        style={{
+          backgroundImage: `linear-gradient(to right, ${customisation.ScoreboardGradientPrimary} , ${customisation.ScoreboardGradientSecondary})`,
+        }}
+      >
+        <div className="row header">
+          <div className="col-8">
+            <img
+              src={scorchers}
+              className="float-left"
+              style={{ transform: "scale(0.9)", paddingTop: "15px" }}
+            />
+          </div>
+          <div className="col-4">Sponsor</div>
         </div>
-        <div className="col-4">Sponsor</div>
-      </div>
 
-      <div className="row">
-        <div className="col">
-          <PlayerList
-            players={players.homePlayers}
-            showScoreboard={showScoreboard}
-            data={data}
-            team="Home"
-          />
-        </div>
-        <div className="col">
-          <PlayerList
-            players={players.visitorPlayers}
-            showScoreboard={showScoreboard}
-            data={data}
-            team="Visitor"
-          />
+        <div className="row" style={{ back: 0.8 }}>
+          <div className="col">
+            <PlayerList
+              players={players.homePlayers}
+              showScoreboard={showScoreboard}
+              team="Home"
+            />
+          </div>
+          <div className="col">
+            <PlayerList
+              players={players.visitorPlayers}
+              showScoreboard={showScoreboard}
+              team="Visitor"
+            />
+          </div>
         </div>
       </div>
     </animated.div>

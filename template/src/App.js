@@ -14,8 +14,8 @@ import "./App.scss";
 import { CustomisationProvider } from "./Components/Context/CustomisationContext";
 
 function App() {
-  const [showScores, setShowScores] = useState(true);
-  const [showScoreboard, setShowScoreboard] = useState(true);
+  const [showScores, setShowScores] = useState(false);
+  const [showScoreboard, setShowScoreboard] = useState(false);
   //Spring Hooks
 
   useEffect(() => {
@@ -35,14 +35,14 @@ function App() {
   return (
     <div className="App">
       <CustomisationProvider>
-        <button onClick={toggleScoreboard}>Click me</button>
+        {/*<button onClick={toggleScoreboard}>Click me</button>*/}
         <NameProvider>
           <ScoreProvider>
             <TimerProvider>
               <Scores visible={showScores} />
             </TimerProvider>
             <PlayerProvider>
-              <Scoreboard showScoreboard={showScoreboard} />
+              {/*<Scoreboard showScoreboard={showScoreboard} />*/}
             </PlayerProvider>
           </ScoreProvider>
           {/*//Title Card*/}

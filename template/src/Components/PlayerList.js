@@ -14,9 +14,6 @@ const PlayerList = ({ players, showScoreboard, data, team }) => {
     from: { opacity: 0 },
   });
   const MainStyle = {
-    backgroundColor: customisation.ScoreboardTeamColour
-      ? customisation.ScoreboardTeamColour
-      : data.vibrant,
     borderRadius: team === "Home" ? "0px 0px 0px 30px" : "0px 0px 15px 0px",
     backgroundImage:
       team === "Home"

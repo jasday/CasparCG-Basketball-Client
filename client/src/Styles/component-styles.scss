@@ -34,6 +34,7 @@
 
 .player{
   color: black;
+  background-color: #313335;
   font-size: 2vh;
 }
 
@@ -60,21 +61,8 @@
   }
 }
 .timerButton{
-  outline: none;
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  font-size: 16px;
-  opacity: 0.9;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
+  font-size: 24px;
 }
-
-
 
 .timerDataControls{
   font-size: 2vh;
@@ -91,7 +79,6 @@
 }
 
 .timerDataControls button{
-  @extend .timerButton;
   font-size: 2.5vh;
 }
 
@@ -99,12 +86,12 @@
   @extend .timerButton;
 }
 
-.timerControls :nth-child(1){
-  border-radius: 10px 0 0 10px;
+.timerFineAdjustments button{
+  @extend .timerButton;
+  font-size: 2.5vh;
 }
-.timerControls :nth-child(5){
-  border-radius: 0 10px 10px 0;
-}
+
+
 
 .timerDataControls :nth-child(1){
   border-radius: 10px 0 0 10px;
@@ -120,4 +107,13 @@
   p{
     font-size: 2vh;
   }
+}
+
+.scoreControlButtons button{
+  font-size: 3vh;
+  padding: 15px;
+}
+
+.shortName{
+  color: #6d6a6a;
 }

@@ -60,11 +60,32 @@ io.on("connection", (socket) => {
   });
 
   socket.on("TIMER-SYNC-REQ", () => {
-    console.log("Request Received");
     socket.broadcast.emit("TIMER-SYNC-REQ");
   });
   socket.on("TIMER-SYNC-RES", (data) => {
     socket.broadcast.emit("TIMER-SYNC-RES", data);
+  });
+  socket.on("SCORE-UPDATE", (data) => {
+    socket.broadcast.emit("SCORE-UPDATE", data);
+  });
+  socket.on("TOGGLE-SCORES", () => {
+    socket.broadcast.emit("TOGGLE-SCORES");
+  });
+  socket.on("TEAM-NAME-UPDATE", (data) => {
+    socket.broadcast.emit("TEAM-NAME-UPDATE", data);
+  });
+  socket.on("TEAM-SHORTNAME-UPDATE", (data) => {
+    socket.broadcast.emit("TEAM-SHORTNAME-UPDATE", data);
+  });
+  socket.on("PLAYER-NAME-UPDATE", (data) => {
+    socket.broadcast.emit("TEAM-SHORTNAME-UPDATE", data);
+  });
+  socket.on("PLAYER-NUMBER-UPDATE", (data) => {
+    socket.broadcast.emit("TEAM-SHORTNAME-UPDATE", data);
+  });
+  socket.on("SET-QUARTER", (data) => {
+    console.log(data);
+    socket.broadcast.emit("SET-QUARTER", data);
   });
 
   //Disconnection

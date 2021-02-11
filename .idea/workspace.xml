@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="409b6f4f-0ac1-4c8c-8895-0b44b750d145" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/casparcg-basketball-client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/casparcg-basketball-client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Electron/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Electron/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Control.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Control.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/MainGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/MainGrid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/SocketConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/SocketConnection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Teams/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Teams/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Teams/ScoreControls.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Teams/ScoreControls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Teams/TeamContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Teams/TeamContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Teams/TeamList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Teams/TeamList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Timer/TimerControls.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Timer/TimerControls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Timer/TimerDataControls.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Timer/TimerDataControls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Styles/component-styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Styles/component-styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/template/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/src/App.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="ProjectId" id="1oJRR8gbOH4zEoljvlEj0aXEt4U" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="409b6f4f-0ac1-4c8c-8895-0b44b750d145" name="Default Changelist" comment="" />
+      <created>1613002697576</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613002697576</updated>
+      <workItem from="1613002701013" duration="358000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

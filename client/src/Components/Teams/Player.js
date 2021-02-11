@@ -1,22 +1,38 @@
 import React, { useState } from "react";
+import { EditText } from "react-edit-text";
 
-const Player = ({ id, name }) => {
+const Player = ({
+  id,
+  name,
+  number,
+  updatePlayerName,
+  updatePlayerNumber,
+  teamType,
+}) => {
   //TODO Player Context to allow for editing - useReducer?
   const [playerName, setName] = useState(name);
-  const [editName, setEditable] = useState(false);
-  const handleEdit = (e) => {
-    setEditable(!editName);
+  const [playerNumber, setNumber] = useState(number);
+
+  const sendUpdate = ({ value }) => {
+    updatePlayerNumber(teamType, id, value);
   };
 
   return (
-    <div className="text-dark player">
-      <input
-        type="text"
-        disabled={editName}
+    <div className="player d-flex justify-content-between text-light">
+      <EditText
+        style={{ fontSize: "2vh" }}
+        defaultValue={playerName}
         value={playerName}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setName(e.target)}
+        onSave={(e) => updatePlayerName}
       />
-      <input className="btn" type="button" value="Edit" onClick={handleEdit} />
+      <EditText
+        style={{ fontSize: "2vh", width: "50px" }}
+        defaultValue={playerNumber}
+        value={playerNumber}
+        onChange={(e) => setNumber(e.target)}
+        onSave={sendUpdate}
+      />
     </div>
   );
 };

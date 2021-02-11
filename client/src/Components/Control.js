@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 
 import Clock from "./Timer/Clock";
 import TimerControls from "./Timer/TimerControls";
@@ -6,7 +6,13 @@ import TimerControls from "./Timer/TimerControls";
 import socket from "./SocketConnection";
 import TimerDataControls from "./Timer/TimerDataControls";
 
-const initialState = { minutes: 10, seconds: 0, paused: true };
+const initialState = {
+  minutes: 10,
+  seconds: 0,
+  paused: true,
+  previewMinutes: 10,
+  previewSeconds: 0,
+};
 
 export const ACTIONS = {
   REDUCE_SECOND: "reduce-second",
@@ -74,6 +80,7 @@ function timerReducer(state, action) {
         minutes: state.minutes,
         seconds: state.seconds,
       });
+      return state;
     default:
       return state;
   }
@@ -88,7 +95,7 @@ const sendTimerValue = (minutes, seconds) => {
 const Control = () => {
   const [state, dispatch] = useReducer(timerReducer, initialState);
 
-  const spacePause = useCallback(
+  /* const spacePause = useCallback(
     (event) => {
       if (event.code === "Space") {
         socket.emit("TIMER-SYNC-REQ");
@@ -108,11 +115,10 @@ const Control = () => {
     return () => {
       document.removeEventListener("keydown", spacePause, false);
     };
-  });
+  });*/
 
   useEffect(() => {
     socket.on("TIMER-SYNC-RES", (data) => {
-      console.log(data);
       dispatch({
         type: ACTIONS.SET_TIMER,
         payload: { seconds: data.seconds, minutes: data.minutes },

@@ -2,16 +2,29 @@ import React, { useState } from "react";
 
 import "../Styles/component-styles.scss";
 
-import TeamList from "./Teams/TeamList";
 import Control from "./Control";
+import TeamContainer from "./Teams/TeamContainer";
+import socket from "./SocketConnection";
 
-const teamDefaultState = [
-  { id: 1, name: "Player 1" },
-  { id: 2, name: "Player 2" },
-  { id: 3, name: "Player 3" },
-  { id: 4, name: "Player 4" },
-  { id: 5, name: "Player 5" },
-];
+const teamDefaultState = {
+  name: "Team",
+  score: 0,
+  players: [
+    { id: 1, name: "Player 1", number: 1 },
+    { id: 2, name: "Player 2", number: 2 },
+    { id: 3, name: "Player 3", number: 3 },
+    { id: 4, name: "Player 4", number: 4 },
+    { id: 5, name: "Player 5", number: 5 },
+  ],
+};
+
+const toggleScores = () => {
+  socket.emit("TOGGLE-SCORES");
+};
+
+const sendQuarter = (quarter) => {
+  socket.emit("SET-QUARTER", quarter);
+};
 
 const MainGrid = () => {
   const [homeTeam, setHomeTeam] = useState(teamDefaultState);
@@ -19,18 +32,67 @@ const MainGrid = () => {
 
   return (
     <div className="container-fluid p-4">
-      <div className="row">
+      <div className="row pb-5">
         <div className="col-3">
-          <TeamList team={homeTeam} />
+          <TeamContainer
+            team={homeTeam}
+            setTeam={setHomeTeam}
+            teamType="homeTeam"
+          />
         </div>
         <div className="col-6">
           <Control />
         </div>
         <div className="col-3">
-          <TeamList team={awayTeam} />
+          <TeamContainer
+            team={awayTeam}
+            setTeam={setAwayTeam}
+            teamType="visitorTeam"
+          />
         </div>
       </div>
-      <div className="row"></div>
+      <div className="row buttons">
+        <div className="col-1">
+          <button
+            className="btn btn-dark w-100 p-3"
+            onClick={() => toggleScores()}
+          >
+            Toggle Scores
+          </button>
+        </div>
+        <div className="col-1">
+          <button
+            className="btn btn-dark w-100 p-3"
+            onClick={() => sendQuarter("1st")}
+          >
+            1st
+          </button>
+        </div>
+        <div className="col-1">
+          <button
+            className="btn btn-dark w-100 p-3"
+            onClick={() => sendQuarter("2nd")}
+          >
+            2nd
+          </button>
+        </div>
+        <div className="col-1">
+          <button
+            className="btn btn-dark w-100 p-3"
+            onClick={() => sendQuarter("3rd")}
+          >
+            3rd
+          </button>
+        </div>
+        <div className="col-1">
+          <button
+            className="btn btn-dark w-100 p-3"
+            onClick={() => sendQuarter("4th")}
+          >
+            4th
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

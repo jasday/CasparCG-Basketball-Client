@@ -14,6 +14,28 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <title>Basketball Template</title>
+    <script>const _graphic = (function() {
+
+      (function() {
+        // Runs after the rest of the parent function parses
+        window['update'] = (raw) => update(raw);
+        window['play'] = play;
+        window['next'] = next;
+        window['stop'] = stop;
+        window['remove'] = remove;
+      })();
+
+      function update(raw) { console.log("Updating", raw)}
+      function play() { console.log("Playing")}
+      function next() { console.log("Next") }
+      function stop() { console.log("Stopping") }
+      function remove() { console.log("Removing")}
+
+      function handleError(e) {console.error(e)}
+      function handleWarning(w) {console.log(w)}
+      return { }
+
+    })();</script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

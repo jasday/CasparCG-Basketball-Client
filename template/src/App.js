@@ -32,10 +32,6 @@ function App() {
     setShowScoreboard(!showScoreboard);
   };
 
-  function update() {
-    console.log("Updating Client");
-    setShowScores(!showScores);
-  }
 
   return (
     <div className="App">

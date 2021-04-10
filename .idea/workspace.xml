@@ -2,13 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="409b6f4f-0ac1-4c8c-8895-0b44b750d145" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Electron/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Electron/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Electron/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Electron/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/MainGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/MainGrid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/ipcContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/ipcContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/.eslintcache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/App.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Clock.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Context/CustomisationContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Context/NameContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Context/PlayerContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Context/ScoreContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Context/TimerContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Player.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/PlayerList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Quarter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Scoreboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Scores.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/SocketConnection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/Team.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/Components/TeamScore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/fonts/Gobold-Regular.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/fonts/Poppins-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/fonts/Poppins.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/fonts/gobold.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/img/Surrey_Scorchers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/src/index.scss" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +72,7 @@
       <workItem from="1613009518202" duration="2107000" />
       <workItem from="1615569240274" duration="636000" />
       <workItem from="1615653414246" duration="15000" />
-      <workItem from="1618053003536" duration="4455000" />
+      <workItem from="1618053003536" duration="4782000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,7 @@ import "../Styles/component-styles.scss";
 
 import Control from "./Control";
 import TeamContainer from "./Teams/TeamContainer";
-import {IPC_ACTIONS, IpcContext} from "./ipcContext";
+import {IPC_ACTIONS, IpcSendContext} from "./Contexts/ipcSendContext";
 
 
 const teamDefaultState = {
@@ -24,14 +24,14 @@ const teamDefaultState = {
 const MainGrid = () => {
   const [homeTeam, setHomeTeam] = useState(teamDefaultState);
   const [awayTeam, setAwayTeam] = useState(teamDefaultState);
-  const [,dispatch] = useContext(IpcContext);
-
+  const context = useContext(IpcSendContext);
+  const dispatch = context.dispatch;
   const toggleScores = () => {
     dispatch({ type: IPC_ACTIONS.TOGGLE_SCORES });
   };
 
   const sendQuarter = (quarter) => {
-    dispatch({ type: IPC_ACTIONS.TOGGLE_SCORES, payload: {quarter} });
+    dispatch({ type: IPC_ACTIONS.SET_QUARTER, payload: {quarter} });
   };
 
   return (

@@ -1,5 +1,6 @@
 //Context
-import {IpcProvider} from "./Components/ipcContext";
+import {IpcSendProvider} from "./Components/Contexts/ipcSendContext";
+import {IpcReceiveProvider} from "./Components/Contexts/ipcReceiveContext";
 
 //Components
 import Header from "./Components/Header";
@@ -8,11 +9,13 @@ import Footer from "./Components/Footer";
 
 const App = () => {
   return (
-    <IpcProvider>
-      <Header />
-      <MainGrid />
-      <Footer />
-    </IpcProvider>
+      <IpcReceiveProvider>
+        <IpcSendProvider>
+          <Header />
+          <MainGrid />
+          <Footer />
+        </IpcSendProvider>
+      </IpcReceiveProvider>
   );
 };
 

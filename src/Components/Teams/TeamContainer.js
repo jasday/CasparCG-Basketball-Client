@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 
 import TeamList from "./TeamList";
 import ScoreControls from "./ScoreControls";
-import socket from "../SocketConnection";
 
 import { EditText } from "react-edit-text";
 import "react-edit-text/dist/index.css";
+import {IPC_ACTIONS, IpcSendContext} from "../Contexts/ipcSendContext";
 
 const TeamContainer = ({ team, setTeam, teamType }) => {
   const [shortName, setShortName] = useState(team.name);
+  const context = useContext(IpcSendContext);
+  const dispatch = context.dispatch;
   const adjustScores = async (score) => {
     setTeam((prevTeam) => {
       let newState;
@@ -17,16 +19,13 @@ const TeamContainer = ({ team, setTeam, teamType }) => {
           ...prevTeam,
           score: 0,
         };
-        socket.emit("SCORE-UPDATE", { team: teamType, score: 0 });
+        dispatch({ type: IPC_ACTIONS.SCORE_UPDATE, payload: { team: teamType, score: 0 } });
       } else {
         newState = {
           ...prevTeam,
           score: prevTeam.score + score,
         };
-        socket.emit("SCORE-UPDATE", {
-          team: teamType,
-          score: team.score + score,
-        });
+        dispatch({ type: IPC_ACTIONS.SCORE_UPDATE, payload: { team: teamType, score: team.score + score } });
       }
       return newState;
     });
@@ -34,17 +33,11 @@ const TeamContainer = ({ team, setTeam, teamType }) => {
 
   const updateName = ({ value }) => {
     setTeam({ ...team, name: value });
-    socket.emit("TEAM-NAME-UPDATE", {
-      type: teamType,
-      name: value,
-    });
+    dispatch({ type: IPC_ACTIONS.TEAM_NAME_UPDATE, payload: { team: teamType, name:value } });
   };
 
   const updateShortName = ({ value }) => {
-    socket.emit("TEAM-SHORTNAME-UPDATE", {
-      type: teamType,
-      name: value,
-    });
+    dispatch({ type: IPC_ACTIONS.TEAM_SHORTNAME_UPDATE, payload: { team: teamType, name:value } });
   };
 
   const updatePlayerName = (teamType, id, { value }) => {
@@ -55,12 +48,9 @@ const TeamContainer = ({ team, setTeam, teamType }) => {
       }
     });
     setTeam({ ...team, players: newPlayers });
-    socket.emit("PLAYER-NAME-UPDATE", {
-      team: teamType,
-      playerID: id,
-      playerName: value,
-    });
+    dispatch({ type: IPC_ACTIONS.PLAYER_NAME_UPDATE, payload: { team: teamType, playerID: id, playerName: value }});
   };
+
   const updatePlayerNumber = (teamType, id, value) => {
     let newPlayers = [...team.players];
     newPlayers.forEach((player) => {
@@ -70,13 +60,7 @@ const TeamContainer = ({ team, setTeam, teamType }) => {
     });
     console.log(newPlayers);
     setTeam({ ...team, players: newPlayers });
-    socket.emit("PLAYER-NUMBER-UPDATE", {
-      team: teamType,
-      playerID: id,
-      playerNumber: value,
-    });
-    console.log(team);
-    console.log("TESTING");
+    dispatch({ type: IPC_ACTIONS.PLAYER_NUMBER_UPDATE, payload: { team: teamType, playerID: id, playerNumber: value }});
   };
 
   return (

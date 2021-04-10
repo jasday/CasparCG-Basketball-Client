@@ -1,8 +1,16 @@
-const { app, BrowserWindow,ipcMain} = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const isDev = require("electron-is-dev");
 const path = require("path");
 require("dotenv").config();
 
+//CONFIG:
+/*
+ENABLE CASPAR
+CASPAR IP
+CASPAR PORT
+CHANNEL LAYER
+VIDEO LAYER
+ */
 
 
 //Net import for TCP Stream
@@ -12,12 +20,9 @@ const Net = require("net");
 const casparIP = process.env.CASPARCG_IP;
 const casparPort = process.env.CASPARCG_PORT || 5250;
 
-const serverPort = process.env.SERVER_PORT || 8000;
-
 let casperEnabled = process.env.CASPAR_ENABLED;
 let mainWindow;
-
-
+let store = {header: 'default', value: 'default'};
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -58,21 +63,13 @@ app.on("activate", () => {
   }
 });
 
-store = 'test';
-mainWindow.webContents.send('store-data', store);
+
+function sendToClient(store) {
+  mainWindow.webContents.send('store-data', store);
+  store.header = '';
+}
 
 
-//IPC Listener
-
-ipcMain.on('request-mainprocess-action', (event, arg) => {
-  if (arg.message == "newWindow") {
-    childWindow(arg.url, arg.num);
-  } else if (arg.message == "closeWindow") {
-    closeChildWindow(arg.num);
-  } else if (arg.message == "updateWindow") {
-    updateChildWindow(arg.url, arg.num);
-  }
-});
 
 //TCP Stream to CasparCG Server
 
@@ -92,8 +89,8 @@ const casparConnect = () => {
 //Reconnection functions - will try to reconnect every 5 seconds.
 const launchIntervalConnect = () => {
   if (false != intervalConnect) return;
-  //TODO Emit connecting event
-  io.sockets.emit("CG-CONNECTING");
+  store = {header: 'CG-CONNECTING', value: 'default'};
+  sendToClient(store);
   intervalConnect = setInterval(casparConnect, casparTimeout);
 };
 
@@ -116,15 +113,18 @@ stream.on("connect", () => {
   errorCount = 0;
   casparFirstConnection = false;
   casparConnected = true;
-  //TODO Emit connected event
-  io.sockets.emit("CG-CONNECTED");
-  sendMessage("INFO");
+  setTimeout(() => {
+    store = {header: 'CG-CONNECTED', value: 'default'};
+    sendToClient(store);
+    sendMessage("INFO");
+  }, 5000);
+
 });
 
 const casparDataHandler = (data) => {
   let dataAsString = data.toString().replace(/^[\s\t]*(\r\n|\n|\r)/gm, "");
-  //TODO Emit data to renderer
-  io.sockets.emit("CG-RECEIVED-DATA", dataAsString);
+  store = {header: 'CG-RECEIVED-DATA', value: dataAsString};
+  sendToClient(store);
 };
 
 stream.on("error", (err) => {
@@ -132,8 +132,8 @@ stream.on("error", (err) => {
   console.error(
       `CASPAR// Connection Attempt failed (${errorCount}) - ${err.code}`
   );
-  //TODO Emit error message
-  io.sockets.emit("CG-CONNECTION-ERROR", errorCount);
+  store = {header: 'CG-CONNECTION-ERROR', value: 'default'};
+  sendToClient(store);
 });
 
 stream.on("data", (data) => {
@@ -144,3 +144,124 @@ stream.on("close", launchIntervalConnect);
 stream.on("end", launchIntervalConnect);
 
 if (casperEnabled == "TRUE") casparConnect();
+
+
+//IPC Listener
+
+//Escaping function
+function escapeJSON(object){
+  let objectJSON = {};
+  objectJSON = JSON.stringify(object);
+  return objectJSON.replaceAll('"','\\"');
+}
+
+ipcMain.on('request-mainprocess-action', (event, arg) => {
+  let message = '';
+  let payload = {};
+  switch (arg.action) {
+    case "toggle-scores":
+      payload = {
+        type: "toggle_scores"
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "set-quarter":
+      payload = {
+        type: "set-quarter",
+        payload: {
+          quarter: arg.payload.quarter
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "timer-pause":
+      payload = {
+        type: "timer-pause"
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "timer-play":
+      payload = {
+        type: "timer-play"
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "timer-set":
+      payload = {
+        type: "timer-set",
+        payload: {
+          minutes: arg.payload.minutes,
+          seconds: arg.payload.seconds
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "score-update":
+      payload = {
+        type: "score-update",
+        payload: {
+          team: arg.payload.team,
+          score: arg.payload.score
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "team-name-update":
+      payload = {
+        type: "team-name-update",
+        payload: {
+          team: arg.payload.team,
+          name: arg.payload.name
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "team-shortname-update":
+      payload = {
+        type: "team-shortname-update",
+        payload: {
+          team: arg.payload.team,
+          name: arg.payload.name
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "player-name-update":
+      payload = {
+        type: "player-name-update",
+        payload: {
+          team: arg.payload.team,
+          id: arg.payload.playerID,
+          name: arg.payload.playerName
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    case "player-number-update":
+      payload = {
+        type: "player-number-update",
+        payload: {
+          team: arg.payload.team,
+          id: arg.payload.playerID,
+          number: arg.payload.playerNumber
+        }
+      };
+      message = `CG 1-1 UPDATE 1 "${escapeJSON(payload)}"`;
+      sendMessage(message);
+      break;
+    default:
+      let message = '';
+      let payload = {};
+      console.error("Default case activated -- something went wrong :(")
+      break
+  }
+});

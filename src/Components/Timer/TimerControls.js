@@ -2,7 +2,7 @@ import React from "react";
 
 import "../../Styles/component-styles.scss";
 import { ACTIONS } from "../Control";
-import socket from "../SocketConnection";
+
 
 const TimerControls = ({ state, dispatch }) => {
   return (
@@ -11,7 +11,7 @@ const TimerControls = ({ state, dispatch }) => {
         <button
           className="btn btn-dark px-5"
           onClick={() => {
-            socket.emit("TIMER-SYNC-REQ");
+            //socket.emit("TIMER-SYNC-REQ");
             dispatch({ type: ACTIONS.PAUSE_TIMER });
           }}
         >
@@ -21,7 +21,7 @@ const TimerControls = ({ state, dispatch }) => {
         <button
           className="btn btn-dark px-5"
           onClick={() => {
-            socket.emit("TIMER-SYNC-REQ");
+            //socket.emit("TIMER-SYNC-REQ");
             dispatch({ type: ACTIONS.PLAY_TIMER });
           }}
         >

@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer } from "react";
+import React, {useContext, useEffect, useReducer} from "react";
 
 import Clock from "./Timer/Clock";
 import TimerControls from "./Timer/TimerControls";
-
-import socket from "./SocketConnection";
 import TimerDataControls from "./Timer/TimerDataControls";
+import {IPC_ACTIONS, IpcSendContext} from "./Contexts/ipcSendContext";
 
 const initialState = {
   minutes: 10,
@@ -26,65 +25,7 @@ export const ACTIONS = {
   SYNC_TIMER: "sync-timer",
 };
 
-function timerReducer(state, action) {
-  let newState;
-  switch (action.type) {
-    case ACTIONS.REDUCE_SECOND:
-      if (state.seconds === 0 && state.minutes !== 0) {
-        newState = { ...state, seconds: 59, minutes: state.minutes - 1 };
-      } else if (state.seconds === 0 && state.minutes === 0) {
-        newState = { ...state, seconds: 0, minutes: 0, paused: true };
-      } else {
-        newState = { ...state, seconds: state.seconds - 1 };
-      }
-      return newState;
-    case ACTIONS.REDUCE_MINUTE:
-      if (state.minutes === 0) {
-        newState = { ...state, minutes: 0 };
-      } else {
-        newState = { ...state, minutes: state.minutes - 1 };
-      }
-      return newState;
-    case ACTIONS.ADD_SECOND:
-      if (state.seconds === 59) {
-        newState = { ...state, seconds: 0, minutes: state.minutes + 1 };
-      } else {
-        newState = { ...state, seconds: state.seconds + 1 };
-      }
-      return newState;
-    case ACTIONS.ADD_MINUTE:
-      return { ...state, minutes: state.minutes + 1 };
-    case ACTIONS.SET_SECONDS:
-      return { ...state, seconds: action.payload.seconds };
-    case ACTIONS.SET_TIMER:
-      if (
-        state.minutes !== action.payload.minutes ||
-        state.seconds !== action.payload.seconds
-      ) {
-        return {
-          ...state,
-          minutes: action.payload.minutes,
-          seconds: action.payload.seconds,
-        };
-      } else {
-        return state;
-      }
-    case ACTIONS.PAUSE_TIMER:
-      socket.emit("TIMER-PAUSE");
-      return { ...state, paused: true };
-    case ACTIONS.PLAY_TIMER:
-      socket.emit("TIMER-PLAY");
-      return { ...state, paused: false };
-    case ACTIONS.SYNC_TIMER:
-      socket.emit("TIMER-SET", {
-        minutes: state.minutes,
-        seconds: state.seconds,
-      });
-      return state;
-    default:
-      return state;
-  }
-}
+
 /*
 const sendTimerValue = (minutes, seconds) => {
   console.log("Sending");
@@ -93,7 +34,73 @@ const sendTimerValue = (minutes, seconds) => {
 */
 
 const Control = () => {
+  const context = useContext(IpcSendContext);
+  const ipcDispatch = context.dispatch;
+
+  function timerReducer(state, action) {
+    let newState;
+    switch (action.type) {
+      case ACTIONS.REDUCE_SECOND:
+        if (state.seconds === 0 && state.minutes !== 0) {
+          newState = { ...state, seconds: 59, minutes: state.minutes - 1 };
+        } else if (state.seconds === 0 && state.minutes === 0) {
+          newState = { ...state, seconds: 0, minutes: 0, paused: true };
+        } else {
+          newState = { ...state, seconds: state.seconds - 1 };
+        }
+        return newState;
+      case ACTIONS.REDUCE_MINUTE:
+        if (state.minutes === 0) {
+          newState = { ...state, minutes: 0 };
+        } else {
+          newState = { ...state, minutes: state.minutes - 1 };
+        }
+        return newState;
+      case ACTIONS.ADD_SECOND:
+        if (state.seconds === 59) {
+          newState = { ...state, seconds: 0, minutes: state.minutes + 1 };
+        } else {
+          newState = { ...state, seconds: state.seconds + 1 };
+        }
+        return newState;
+      case ACTIONS.ADD_MINUTE:
+        return { ...state, minutes: state.minutes + 1 };
+      case ACTIONS.SET_SECONDS:
+        return { ...state, seconds: action.payload.seconds };
+      case ACTIONS.SET_TIMER:
+        if (
+            state.minutes !== action.payload.minutes ||
+            state.seconds !== action.payload.seconds
+        ) {
+          return {
+            ...state,
+            minutes: action.payload.minutes,
+            seconds: action.payload.seconds,
+          };
+        } else {
+          return state;
+        }
+      case ACTIONS.PAUSE_TIMER:
+        ipcDispatch({ type: IPC_ACTIONS.TIMER_PAUSE });
+        return { ...state, paused: true };
+      case ACTIONS.PLAY_TIMER:
+        ipcDispatch({ type: IPC_ACTIONS.TIMER_PLAY });
+        return { ...state, paused: false };
+      case ACTIONS.SYNC_TIMER:
+        ipcDispatch({
+          type: IPC_ACTIONS.TIMER_SET,
+          payload:{
+            minutes: state.minutes,
+            seconds: state.seconds
+          }});
+        return state;
+      default:
+        return state;
+    }
+  }
+
   const [state, dispatch] = useReducer(timerReducer, initialState);
+
 
   /* const spacePause = useCallback(
     (event) => {
@@ -117,14 +124,15 @@ const Control = () => {
     };
   });*/
 
-  useEffect(() => {
+  //Figure out timer sync
+/*  useEffect(() => {
     socket.on("TIMER-SYNC-RES", (data) => {
       dispatch({
         type: ACTIONS.SET_TIMER,
         payload: { seconds: data.seconds, minutes: data.minutes },
       });
     });
-  }, []);
+  }, []);*/
 
   useEffect(() => {
     let myInterval = setInterval(() => {

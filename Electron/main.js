@@ -69,6 +69,10 @@ function sendToClient(store) {
   store.header = '';
 }
 
+function sendStringToClient(message){
+  store = {header: 'CG-CONNECTING', value: message};
+  mainWindow.webContents.send('store-data', store)
+}
 
 
 //TCP Stream to CasparCG Server
@@ -140,8 +144,8 @@ stream.on("data", (data) => {
   casparDataHandler(data);
 });
 
-stream.on("close", launchIntervalConnect);
-stream.on("end", launchIntervalConnect);
+stream.on("close", ()=> casperEnabled ? launchIntervalConnect() : sendStringToClient("Caspar stream disconnected and disabled, will not reconnect"));
+stream.on("end", ()=> casperEnabled ? launchIntervalConnect() : sendStringToClient("Caspar stream disconnected and disabled, will not reconnect"));
 
 if (casperEnabled == "TRUE") casparConnect();
 
@@ -259,9 +263,9 @@ ipcMain.on('request-mainprocess-action', (event, arg) => {
       sendMessage(message);
       break;
     default:
-      let message = '';
-      let payload = {};
-      console.error("Default case activated -- something went wrong :(")
+      message = '';
+      payload = {};
+      console.error("IPC switch has fallen through to default case")
       break
   }
 });

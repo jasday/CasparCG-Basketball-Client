@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="409b6f4f-0ac1-4c8c-8895-0b44b750d145" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/Contexts/ipcReceiveContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Electron/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Electron/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Electron/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Electron/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Control.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Control.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainGrid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/StatusIcon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/StatusIcon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Teams/TeamContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Teams/TeamContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Timer/TimerControls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Timer/TimerControls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ipcContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Contexts/ipcSendContext.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +46,7 @@
       <workItem from="1615569240274" duration="636000" />
       <workItem from="1615653414246" duration="15000" />
       <workItem from="1618053003536" duration="15677000" />
-      <workItem from="1618071130711" duration="8451000" />
+      <workItem from="1618071130711" duration="9705000" />
     </task>
     <servers />
   </component>

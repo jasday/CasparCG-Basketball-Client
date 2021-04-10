@@ -1,4 +1,5 @@
 //Context
+import {IpcProvider} from "./Components/ipcContext";
 
 //Components
 import Header from "./Components/Header";
@@ -7,11 +8,11 @@ import Footer from "./Components/Footer";
 
 const App = () => {
   return (
-    <>
+    <IpcProvider>
       <Header />
       <MainGrid />
       <Footer />
-    </>
+    </IpcProvider>
   );
 };
 

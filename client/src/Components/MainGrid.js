@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "../Styles/component-styles.scss";
 
 import Control from "./Control";
 import TeamContainer from "./Teams/TeamContainer";
-import socket from "./SocketConnection";
+import {IPC_ACTIONS, IpcContext} from "./ipcContext";
+
 
 const teamDefaultState = {
   name: "Team",
@@ -18,17 +19,20 @@ const teamDefaultState = {
   ],
 };
 
-const toggleScores = () => {
-  socket.emit("TOGGLE-SCORES");
-};
 
-const sendQuarter = (quarter) => {
-  socket.emit("SET-QUARTER", quarter);
-};
 
 const MainGrid = () => {
   const [homeTeam, setHomeTeam] = useState(teamDefaultState);
   const [awayTeam, setAwayTeam] = useState(teamDefaultState);
+  const [,dispatch] = useContext(IpcContext);
+
+  const toggleScores = () => {
+    dispatch({ type: IPC_ACTIONS.TOGGLE_SCORES });
+  };
+
+  const sendQuarter = (quarter) => {
+    dispatch({ type: IPC_ACTIONS.TOGGLE_SCORES, payload: {quarter} });
+  };
 
   return (
     <div className="container-fluid p-4">

@@ -1,18 +1,12 @@
 //imports
 
-require("dotenv").config();
 
-const casparIP = process.env.CASPARCG_IP;
-const casparPort = process.env.CASPARCG_PORT || 5250;
 
-const serverPort = process.env.SERVER_PORT || 8000;
-
-let casperEnabled = process.env.CASPAR_ENABLED;
 
 //Server initialisation
 const express = require("express");
 const app = express();
-const Net = require("net");
+
 
 //Starting socket.io server
 const server = require("http").createServer(app);
@@ -39,7 +33,7 @@ app.get("/", (req, res) => {
 });
 
 //Socket IO connection
-io.on("connection", (socket) => {
+/*io.on("connection", (socket) => {
   console.log(
     `SOCKET// User Connected from ${socket.handshake.address} at ${new Date(
       socket.handshake.issued
@@ -92,74 +86,8 @@ io.on("connection", (socket) => {
   socket.on("disconnect", (reason) => {
     console.log(`SOCKET// Client disconnected: ${reason}`);
   });
-});
+});*/
 
-//TCP Stream to CasparCG Server
-
-//Create Stream object
-const stream = new Net.Socket();
-let casparConnected = false;
-let casparFirstConnection = true;
-let errorCount = 0;
-let intervalConnect = false;
-const casparTimeout = process.env.CASPAR_RECONNECTION_TIMEOUT;
-
-//Connect to Caspar Server
-const casparConnect = () => {
-  stream.connect({ port: casparPort, host: casparIP });
-};
-
-//Reconnection functions - will try to reconnect every 5 seconds.
-const launchIntervalConnect = () => {
-  if (false != intervalConnect) return;
-  io.sockets.emit("CG-CONNECTING");
-  intervalConnect = setInterval(casparConnect, casparTimeout);
-};
-
-const clearIntervalConnect = () => {
-  if (false == intervalConnect) return;
-  clearInterval(intervalConnect);
-  intervalConnect = false;
-};
-
-//Message helper
-const sendMessage = (command) => {
-  let commandBuffer = Buffer.from(command + "\r\n", "utf8");
-  stream.write(commandBuffer);
-  console.log("Caspar command sent: ", command);
-};
-
-stream.on("connect", () => {
-  clearIntervalConnect();
-  console.log(`CASPAR// Connected to Caspar Server ${casparIP}:${casparPort}`);
-  errorCount = 0;
-  casparFirstConnection = false;
-  casparConnected = true;
-  io.sockets.emit("CG-CONNECTED");
-  sendMessage("INFO");
-});
-
-const casparDataHandler = (data) => {
-  let dataAsString = data.toString().replace(/^[\s\t]*(\r\n|\n|\r)/gm, "");
-  io.sockets.emit("CG-RECEIVED-DATA", dataAsString);
-};
-
-stream.on("error", (err) => {
-  errorCount += 1;
-  console.error(
-    `CASPAR// Connection Attempt failed (${errorCount}) - ${err.code}`
-  );
-  io.sockets.emit("CG-CONNECTION-ERROR", errorCount);
-});
-
-stream.on("data", (data) => {
-  casparDataHandler(data);
-});
-
-stream.on("close", launchIntervalConnect);
-stream.on("end", launchIntervalConnect);
-
-if (casperEnabled == "TRUE") casparConnect();
 
 //Listening on port from env file - Specifying ipv4 use
 server.listen(serverPort, "0.0.0.0", () => {

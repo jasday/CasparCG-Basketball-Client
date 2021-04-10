@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="409b6f4f-0ac1-4c8c-8895-0b44b750d145" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/template/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/src/Components/SocketConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/src/Components/SocketConnection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Electron/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Electron/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Electron/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Electron/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/MainGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/MainGrid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/ipcContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/ipcContext.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -41,6 +43,9 @@
       <workItem from="1613002701013" duration="644000" />
       <workItem from="1613009277853" duration="127000" />
       <workItem from="1613009518202" duration="2107000" />
+      <workItem from="1615569240274" duration="636000" />
+      <workItem from="1615653414246" duration="15000" />
+      <workItem from="1618053003536" duration="4455000" />
     </task>
     <servers />
   </component>

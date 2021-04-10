@@ -1,5 +1,0 @@
-//TODO Socket IO on Client -
-//TODO SET-HOME-NAME / SET-VISITOR-NAME (sets data as name)
-//TODO SET-HOME-SCORE / SET-VISITOR-SCORE (adds data to score)
-//TODO TIMER-PAUSE / TIMER-PLAY / TIMER-SET (data.minutes, date.seconds)
-//TODO SET-QUARTER (data is set - string)
